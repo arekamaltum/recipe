@@ -6,6 +6,7 @@
     <title>Recipe Finder</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -14,11 +15,31 @@
                 <div class="logo">
                     <h1>🍳 Recipe Finder</h1>
                 </div>
+                <button id="mobile-menu-toggle" class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <div class="nav-links">
-                    <button class="nav-btn active" data-section="search">Search Recipes</button>
-                    <button class="nav-btn" data-section="categories">Categories</button>
-                    <button class="nav-btn" data-section="areas">Cuisines</button>
-                    <button class="nav-btn" data-section="random">Random Recipe</button>
+                    <button class="nav-btn active" data-section="search">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                    <button class="nav-btn" data-section="categories">
+                        <i class="fas fa-th-large"></i> Categories
+                    </button>
+                    <button class="nav-btn" data-section="areas">
+                        <i class="fas fa-globe"></i> Cuisines
+                    </button>
+                    <button class="nav-btn" data-section="favorites">
+                        <i class="fas fa-heart"></i> Favorites
+                    </button>
+                    <button class="nav-btn" data-section="meal-plan">
+                        <i class="fas fa-calendar-alt"></i> Meal Plan
+                    </button>
+                    <button class="nav-btn" data-section="random">
+                        <i class="fas fa-random"></i> Random
+                    </button>
+                    <button id="dark-mode-toggle" class="dark-mode-toggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
                 </div>
             </nav>
         </header>
@@ -27,49 +48,84 @@
             <!-- Search Section -->
             <section id="search-section" class="active-section">
                 <div class="search-container">
+                    <h2>Find Your Perfect Recipe</h2>
+                    
                     <div class="search-by-name">
-                        <input type="text" id="recipe-search" placeholder="Search recipe by name...">
+                        <div class="input-with-icon">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="recipe-search" placeholder="Search recipe by name...">
+                        </div>
                         <button id="search-by-name-btn" class="btn primary">
-                            <i class="fas fa-search"></i> Search
+                            Search
                         </button>
                     </div>
                     
+                    <div class="search-divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <h3>Search by Ingredients</h3>
+                    <p class="search-subtitle">What ingredients do you have?</p>
+                    
                     <div class="ingredients-input">
                         <div class="input-group">
-                            <input type="text" id="ingredient-input" placeholder="Or enter ingredients...">
+                            <div class="input-with-icon">
+                                <i class="fas fa-utensils"></i>
+                                <input type="text" id="ingredient-input" placeholder="Enter ingredients...">
+                            </div>
                             <button id="add-ingredient" class="btn">
                                 <i class="fas fa-plus"></i> Add
                             </button>
                         </div>
                         <div class="voice-input">
                             <button id="voice-input-btn" class="btn">
-                                <i class="fas fa-microphone"></i> Voice Search
+                                <i class="fas fa-microphone"></i> Voice
                             </button>
                         </div>
                     </div>
 
-                    <div class="ingredients-list" id="ingredients-list">
-                        <!-- Dynamic ingredients tags will be added here -->
+                    <div class="ingredients-list-container">
+                        <div class="ingredients-header">
+                            <h4>Your Ingredients:</h4>
+                            <button id="clear-ingredients" class="btn small">
+                                <i class="fas fa-trash"></i> Clear All
+                            </button>
+                        </div>
+                        <div class="ingredients-list" id="ingredients-list">
+                            <div class="no-ingredients">No ingredients added yet</div>
+                        </div>
                     </div>
 
                     <div class="filters">
-                        <select id="category-filter">
-                            <option value="">All Categories</option>
-                            <!-- Categories will be populated from API -->
-                        </select>
+                        <div class="filter-group">
+                            <label for="category-filter">Category:</label>
+                            <select id="category-filter">
+                                <option value="">All Categories</option>
+                                <!-- Categories will be populated from API -->
+                            </select>
+                        </div>
 
-                        <select id="area-filter">
-                            <option value="">All Cuisines</option>
-                            <!-- Areas will be populated from API -->
-                        </select>
+                        <div class="filter-group">
+                            <label for="area-filter">Cuisine:</label>
+                            <select id="area-filter">
+                                <option value="">All Cuisines</option>
+                                <!-- Areas will be populated from API -->
+                            </select>
+                        </div>
                     </div>
 
-                    <button id="search-recipes" class="btn primary">Find Recipes</button>
+                    <button id="search-recipes" class="btn primary search-btn">
+                        <i class="fas fa-search"></i> Find Recipes
+                    </button>
                 </div>
             </section>
 
             <!-- Categories Section -->
             <section id="categories-section" class="section">
+                <div class="section-header">
+                    <h2>Recipe Categories</h2>
+                    <p>Browse recipes by category</p>
+                </div>
                 <div class="categories-grid">
                     <!-- Categories will be populated here -->
                 </div>
@@ -77,13 +133,33 @@
 
             <!-- Areas/Cuisines Section -->
             <section id="areas-section" class="section">
+                <div class="section-header">
+                    <h2>Cuisines of the World</h2>
+                    <p>Explore recipes from different cultures</p>
+                </div>
                 <div class="areas-grid">
                     <!-- Areas will be populated here -->
                 </div>
             </section>
+            
+            <!-- Favorites Section -->
+            <section id="favorites-section" class="section">
+                <!-- Favorites will be populated here -->
+            </section>
+            
+            <!-- Meal Plan Section -->
+            <section id="meal-plan-section" class="section">
+                <!-- Meal plan will be populated here -->
+            </section>
 
             <!-- Random Recipe Section -->
             <section id="random-section" class="section">
+                <div class="section-header">
+                    <h2>Random Recipe Inspiration</h2>
+                    <button class="btn" onclick="recipeFinder.loadRandomRecipe()">
+                        <i class="fas fa-dice"></i> Roll Again
+                    </button>
+                </div>
                 <!-- Random recipe will be displayed here -->
             </section>
 
@@ -106,26 +182,33 @@
         <!-- Loading Spinner -->
         <div id="loading-spinner" class="loading-spinner">
             <div class="spinner"></div>
+            <p>Loading delicious recipes...</p>
         </div>
+        
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
 
         <!-- Footer -->
         <footer>
             <div class="footer-content">
                 <div class="footer-section about">
-                    <h2>🍳 About Us</h2>
-                    <p>Recipe Finder is your go-to platform for discovering delicious recipes from around the world. Whether you're looking for a quick meal or a gourmet dish, we've got you covered.</p>
+                    <h2>🍳 About Recipe Finder</h2>
+                    <p>Recipe Finder helps you discover delicious recipes from around the world. Whether you're looking for a quick meal or a gourmet dish, we've got you covered.</p>
                 </div>
                 <div class="footer-section newsletter">
-                    <h2>📬 Newsletter</h2>
-                    <p>Subscribe to our newsletter to get the latest recipes and cooking tips delivered straight to your inbox.</p>
+                    <h2>📬 Get Recipe Updates</h2>
+                    <p>Subscribe to our newsletter for the latest recipes and cooking tips.</p>
                     <form id="newsletter-form">
-                        <input type="email" id="newsletter-email" placeholder="Enter your email..." required>
-                        <button type="submit" class="btn primary">Subscribe</button>
+                        <div class="newsletter-input">
+                            <input type="email" id="newsletter-email" placeholder="Your email address" required>
+                            <button type="submit" class="btn primary">Subscribe</button>
+                        </div>
                     </form>
                 </div>
                 <div class="footer-section links">
                     <h2>🔗 Quick Links</h2>
                     <ul>
+                        <li><a href="#">About Us</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Contact Us</a></li>
